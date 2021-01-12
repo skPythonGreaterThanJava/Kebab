@@ -31,8 +31,17 @@ public class Customer implements Runnable{
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if(satisfied)
+                if(satisfied){
                     System.out.println("Giovanni soddisfatto: " + num);
+                    notifyAll();
+                }
+                else{
+                    try {
+                        wait();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
         }
     }

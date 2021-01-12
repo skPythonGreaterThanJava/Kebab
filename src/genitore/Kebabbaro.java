@@ -5,6 +5,9 @@
  */
 package genitore;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author sesana.federico
@@ -15,8 +18,16 @@ public class Kebabbaro {
     
     public synchronized boolean kebabbing() throws InterruptedException {
         kebbabb = false;
-        Thread.sleep(5000);
-        kebbabb = true;
+        prepare();
         return kebbabb;
+    }
+    
+    public void prepare(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Kebabbaro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        kebbabb = true; 
     }
 }
